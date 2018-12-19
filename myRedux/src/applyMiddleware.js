@@ -22,11 +22,11 @@ export default function applyMiddleware(...middlewares) {
 
         const MiddlewareAPI = {
             getState: store.getState,
-            dispatch: (...args) => dispatch(...args) // kind of disabling dispatch while middleware is beng processed
+            dispatch: (...args) => dispatch(...args) //
         }
         // pass getState and disabled dispatch for each middleware
         const chain = middlewares.map(middleware => middleware(MiddlewareAPI));
-        // reduce array of fn to a single one and restore dispatch
+        // reduce array of fn to a single one and pass the original dispatch dispatch
         dispatch = compose(...chain)(store.dispatch);
         // returns an object with each prop of the store and the dispatch
         return {
