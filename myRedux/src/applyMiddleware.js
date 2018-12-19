@@ -30,6 +30,7 @@ export default function applyMiddleware(...middlewares) {
         dispatch = compose(...chain)(store.dispatch);
         // returns an object with each prop of the store and the dispatch
         return {
+            // here spread returned props from store, and overwritte store.dispatch with our just produced dispatch
             ...store,
             dispatch
         }
